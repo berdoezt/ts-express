@@ -19,12 +19,17 @@ async function startServer() {
         app.use(loggingMiddleware)
 
         app.get("/products", productController.getProduct)
+        app.get("/products/:product_id", productController.getProductById)
+        app.put("/products/:product_id", productController.getProductById)
+        app.delete("/products/:product_id", productController.getProductById)
+        app.post("/products", productController.createProduct)
         
         app.use((req: express.Request, res: express.Response) => {
             res.status(404).json({
                 error: "not found"
             })
         })
+
         app.listen(8082)
     } catch (e) {
         console.error('failed to start server :', e)

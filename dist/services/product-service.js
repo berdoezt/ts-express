@@ -25,5 +25,20 @@ class ProductService {
             return getProductsResponse;
         });
     }
+    getById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const product = yield this.productRepository.getById(id);
+            return (0, product_model_1.toGetProductResponseFrom)(product);
+        });
+    }
+    create(createProductRequest) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let productModel = (0, product_model_1.toProductModelFrom)(createProductRequest);
+            let createdProductId = yield this.productRepository.create(productModel);
+            return {
+                id: createdProductId
+            };
+        });
+    }
 }
 exports.ProductService = ProductService;

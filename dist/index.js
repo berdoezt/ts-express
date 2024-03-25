@@ -29,6 +29,8 @@ function startServer() {
             app.use(express_1.default.json());
             app.use(middleware_1.loggingMiddleware);
             app.get("/products", productController.getProduct);
+            app.get("/products/:product_id", productController.getProductById);
+            app.post("/products", productController.createProduct);
             app.use((req, res) => {
                 res.status(404).json({
                     error: "not found"
